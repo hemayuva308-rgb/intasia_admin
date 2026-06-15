@@ -25,7 +25,7 @@ connectDB();
           styleSrc:   ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
           fontSrc:    ["'self'", "https://fonts.gstatic.com"],
           imgSrc:     ["'self'", "data:", "blob:", "*"],
-          connectSrc: ["'self'", "https://intasia-com.vercel.app", "https://api.intasia.in"], // <-- உங்க Backend API URL மற்றும் Vercel URL இரண்டையும் இங்க சேர்க்கணும்!
+          connectSrc: ["'self'", "http://127.0.0.1:5000", "https://intasia-com.vercel.app", "https://api.intasia.in"],
         },
       },
     })(req, res, next);
@@ -35,10 +35,15 @@ connectDB();
 
 // ── CORS ─────────────────────────────────────────────────────────────────────
 const allowedOrigins = [
+  'http://127.0.0.1:5500',           // Local dev — Live Server
+  'http://127.0.0.1:5501',           // Live Server alternate port
+  'http://localhost:5500',
+  'http://localhost:5501',
+  'http://localhost:3000',            // React dev server (if any)
   'https://intasia.in',
   'https://www.intasia.in',
   'https://api.intasia.in',
-  'https://intasia-com.vercel.app', // <-- Added to allow cross-origin requests from Vercel
+  'https://intasia-com.vercel.app',
   process.env.FRONTEND_URL,
 ].filter(Boolean);
 
@@ -82,7 +87,7 @@ app.get('/admin', (req, res) =>
 );
 
 // ── API Routes ────────────────────────────────────────────────────────────────
-app.use('/api/auth',           require('./routes/auth'));
+app.use('/api/auth',         require('./routes/auth'));
 app.use('/api/contacts',       require('./routes/contacts'));
 app.use('/api/bookings',       require('./routes/bookings'));
 app.use('/api/services',       require('./routes/services'));

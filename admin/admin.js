@@ -3,7 +3,10 @@
    No build step required. Serves from /admin/
 ═══════════════════════════════════════════════════════ */
 
-const API = '/api';
+// Auto-detect: if served from Live Server (port 5500) use absolute backend URL
+const API = (window.location.port === '5500' || window.location.port === '5501')
+  ? 'http://127.0.0.1:5000/api'
+  : '/api';
 let token = localStorage.getItem('ia_token');
 
 /* ── API helper ── */
