@@ -44,6 +44,7 @@ const allowedOrigins = [
   'https://www.intasia.in',
   'https://api.intasia.in',
   'https://intasia-com.vercel.app',
+  'https://intasia-admin.onrender.com',
   process.env.FRONTEND_URL,
 ].filter(Boolean);
 
